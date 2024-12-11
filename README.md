@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# Overview
+The Guessing Number Game is a fun and interactive web-based application where players attempt to guess a randomly generated 4-digit number based on provided feedback. The game tracks the time taken and the number of attempts, calculates a score, and stores the results in a database for leaderboard functionality. This project demonstrates a combination of frontend and backend technologies to build a seamless and dynamic application.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Application Workflow
+# Start Game:
+The player enters their name and starts the game.
 
-## Available Scripts
+A unique 4-digit target number (with no repeated digits) is generated on the server side.
 
-In the project directory, you can run:
+A timer starts to track the player's time.
 
-### `npm start`
+# Submit Guesses:
+The player inputs a 4-digit number and submits it.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The backend compares the guess with the target number and provides feedback:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+indicates a correct digit in the correct position.
+indicates a correct digit in the wrong position.
+The feedback is displayed to the player.
 
-### `npm test`
+# Game Completion:
+If the player guesses the number correctly, the timer stops.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The score is calculated based on the total time taken and the number of attempts:
 
-### `npm run build`
+Score = 1 / (Time Taken in Seconds + Number of Guesses)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The player's name, score, time taken, and number of guesses are saved to the database.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Leaderboard:
+Players can view the best score in the database.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Restart or Stop Game:
 
-### `npm run eject`
+Players can stop the game anytime and view their score.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+They can restart the game with a new target number.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Frontend
+React.js:
+Manages the user interface and state (e.g., timer, feedback).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Handles input validation to ensure guesses are exactly 4-digit numbers.
 
-## Learn More
+Provides a responsive and user-friendly experience with styled components.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Backend
+Spring Boot:
+Provides RESTful APIs for starting the game, submitting guesses, saving scores, and retrieving leaderboard data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Contains business logic for generating the target number, evaluating guesses, and calculating scores.
 
-### Code Splitting
+# Database
+MySQL:
+Stores player data including names, scores, time taken, and number of guesses.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Enables leaderboard functionality by retrieving the highest score.
 
-### Analyzing the Bundle Size
+# Communication
+Axios:
+Facilitates HTTP requests from the React.js frontend to the Spring Boot backend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Development Tools
+Spring Tool Suite (STS): Used for backend development.
 
-### Making a Progressive Web App
+Node.js and npm: For managing the React.js project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+MySQL Workbench: For managing the MySQL database.
 
-### Advanced Configuration
+# Project Structure
+# Backend
+Controller:
+Manages API endpoints for game logic and score operations.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Service:
+Handles core game logic (e.g., number generation, guess evaluation, score calculation).
 
-### Deployment
+Repository:
+Manages database operations using Spring Data JPA.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Frontend
+GameStart Component:
+Allows players to input their name and start the game.
 
-### `npm run build` fails to minify
+GuessInput Component:
+Handles the guess submission, displays feedback, and manages game controls (e.g., stop, restart).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Features
+Random generation of a unique 4-digit number.
+
+Real-time feedback on guesses.
+
+Automatic timer and score calculation.
+
+Persistent storage of player scores and leaderboard tracking.
+
+User-friendly interface with responsive design.
+
+# How to Run the Application
+
+# Prerequisites
+# Backend:
+Java 11 or higher
+
+Spring Boot 2.5+
+
+MySQL
+
+# Frontend:
+Node.js 14 or higher
+
+npm or yarn
+
+# Steps
+# Backend Setup:
+Clone the repository.
+
+Configure the application.properties file with your MySQL credentials.
+
+Run the Spring Boot application using STS or mvn spring-boot:run.
+
+Frontend Setup:
+Navigate to the frontend folder.
+
+Run npm install to install dependencies.
+
+Run npm start to start the React development server.
+
+Access the application at http://localhost:3000.
+
+Future Enhancements
+
+Add a detailed leaderboard page.
+
+Implement difficulty levels (e.g., 5-digit numbers).
+
+Add authentication for tracking scores per player.
+
+Deploy the application to a cloud platform (e.g., AWS, Heroku).
+
+# Conclusion
+This project is a practical implementation of a simple yet engaging game that combines frontend interactivity with backend robustness. It showcases the integration of modern web technologies, making it a valuable learning experience for full-stack developers.
